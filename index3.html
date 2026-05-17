@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Кокорев Данила Олегович — Резюме</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #14192a;
+      --text: #e9eaf3;
+      --muted: #aab3c5;
+      --accent: #6ea8fe;
+      --accent-2: #7bd389;
+      --shadow: 0 10px 25px rgba(0,0,0,.25);
+      --radius: 14px;
+    }
+    [data-theme="light"] {
+      --bg: #f6f8fc;
+      --card: #ffffff;
+      --text: #0b1220;
+      --muted: #555d74;
+      --accent: #2b6cb0;
+      --accent-2: #1f9e58;
+      --shadow: 0 8px 20px rgba(0,0,0,.08);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; scroll-behavior: smooth; background: var(--bg); color: var(--text); }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1100px, 92%); margin: 0 auto; }
+    header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(1.2) blur(6px); background: color-m-mix(in oklab, var(--bg), transparent 60%); }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand .logo { width: 40px; height: 40px; border-radius: 9px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: inline-flex; align-items: center; justify-content: center; font-weight: bold; }
+    nav ul { display: flex; gap: 14px; list-style: none; padding: 0; margin: 0; }
+    nav a { padding: 8px 12px; border-radius: 8px; color: var(--text); }
+    .theme-toggle, .cta { border: 1px solid var(--accent); padding: 8px 12px; border-radius: 8px; background: transparent; color: var(--text); cursor: pointer; }
+    main { padding: 28px 0 60px; }
+    .section { margin: 40px 0; padding: 20px; border-radius: var(--radius); background: linear-gradient(135deg, rgba(255,255,255,.04), rgba(0,0,0,.08)); box-shadow: var(--shadow); opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+    .section.visible { opacity: 1; transform: translateY(0); }
+    .grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: start; }
+    .photo { width: 100%; height: 0; padding-bottom: 100%; border-radius: 14px; overflow: hidden; background: #1f1f1f; display: flex; align-items: center; justify-content: center; border: 1px solid #333; }
+    .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card { background: var(--card); border-radius: var(--radius); padding: 20px; border: 1px solid rgba(255,255,255,.05); }
+    h1 { font-size: 28px; margin: 6px 0 6px; }
+    .sub { color: var(--muted); font-size: 14px; }
+    ul.skill-list { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 0; list-style: none; }
+    .chip { padding: 8px 12px; border-radius: 20px; background: rgba(110,168,254,.15); border: 1px solid rgba(110,168,254,.4); color: #fff; font-size: 13px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; }
+    th { width: 40%; color: var(--muted); }
+    details { border: 1px solid rgba(255,255,255,.08); border-radius: 8px; padding: 8px; background: rgba(0,0,0,.08); margin-bottom: 8px; }
+    summary { cursor: pointer; font-weight: 600; }
+    .btns { display: flex; flex-wrap: wrap; gap: 12px; margin: 8px 0 0; }
+    button, input, textarea { font-family: inherit; font-size: 14px; }
+    button.primary { background: var(--accent); color: #fff; border: 0; padding: 10px 14px; border-radius: 8px; cursor: pointer; transition: transform .2s ease; }
+    button.primary:hover { transform: translateY(-1px); }
+    button.secondary { background: transparent; color: var(--text); border: 1px solid var(--accent); padding: 10px 14px; border-radius: 8px; cursor: pointer; }
+    .section-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; gap: 12px; }
+    .section-title { font-size: 22px; margin: 0; }
+    .count { font-variant-numeric: tabular-nums; font-weight: 700; }
+    form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    form .field { display: flex; flex-direction: column; gap: 6px; }
+    label { font-size: 12px; color: var(--muted); }
+    input[type="text"], input[type="email"], textarea { padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,.25); background: rgba(0,0,0,.15); color: var(--text); outline: none; }
+    textarea { min-height: 120px; resize: vertical; }
+    .error { color: #ff7a7a; font-size: 12px; }
+    .footer { text-align: center; padding: 20px 0; color: var(--muted); }
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      form .row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container brand">
+      <div class="logo" aria-label="Логотип"></div>
+      <div>
+        <strong>Кокорев Данила Олегович</strong><br/>
+        <span class="sub">3 курс, Группа АДБ-23-07 • МГТУ "СТАНКИН" • Специализация: автоматизация технологических процессов и производств</span>
+      </div>
+    </div>
+    <div class="container" style="display:flex; gap:10px; align-items:center; justify-content:flex-end;">
+      <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">🌙</button>
+      <a href="#" class="cta" id="downloadResume" style="border:1px solid var(--accent); padding:8px 12px; border-radius:8px; color:var(--text);">Скачать резюме</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Раздел: фото и кратко -->
+    <section class="section" id="about">
+      <div class="section-head">
+        <h2 class="section-title">О себе</h2>
+        <span class="count" id="viewCount" title="Количество просмотров">0 просмотров</span>
+      </div>
+      <div class="grid">
+        <div class="card photo" aria-label="Фото резюме">
+          <img src="myphoto.jpg" alt="Фотография Данилы Кокорева" onerror="this.style.display='none'; this.parentElement.style.background='#333'; this.parentElement.innerHTML='<span style=\"color:#bbb;\">Фото отсутствует</span>';">
+        </div>
+        <div class="card" style="display:flex; flex-direction:column; gap:12px;">
+          <p>Привет! Меня зовут Данила Кокорев. Я студент 3 курса по специальности автоматизация технологических процессов и производств. Ищу стажировку и проекты в области промышленной автоматизации, задачах анализа и оптимизации производственных процессов.</p>
+          <p>Навыки: контроль процессов, работа с PLC/SCADA, Python для анализа данных, основа C/C++, машинное обучение на базовом уровне, коммуникации и работа в команде.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Раздел: Опыт работы -->
+    <section class="section" id="experience">
+      <div class="section-head">
+        <h2 class="section-title">Опыт работы</h2>
+      </div>
+      <!-- Аккордеон опыта -->
+      <details open>
+        <summary>Стажировка — Автоматизация производственного участка</summary>
+        <div style="padding:8px 10px;">
+          <p>Компания: ООО «ТехПро» (мокр. пример)</p>
+          <p>Должность: Стажёр по автоматизации</p>
+          <p>Достижения: настройка простейших логических схем, мониторинг параметров, участие в проектах по сборке данных.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Фриланс — Разработка небольших SCADA-дороботок</summary>
+        <div style="padding:8px 10px;">
+          <p>Описание: создание простых интерфейсов для мониторинга параметров оборудования, интеграция с источниками данных.</p>
+        </div>
+      </details>
+    </section>
+
+    <!-- Раздел: Навыки -->
+    <section class="section" id="skills">
+      <div class="section-head">
+        <h2 class="section-title">Навыки</h2>
+      </div>
+      <ul class="skill-list" aria-label="Навыки">
+        <li class="chip">Python</li>
+        <li class="chip">PLC</li>
+        <li class="chip">SCADA</li>
+        <li class="chip">SQL</li>
+        <li class="chip">Machine Learning (базовый)</li>
+        <li class="chip">PCB основы</li>
+        <li class="chip">Git</li>
+        <li class="chip">Английский чтение</li>
+      </ul>
+    </section>
+
+    <!-- Раздел: Образование -->
+    <section class="section" id="education">
+      <div class="section-head">
+        <h2 class="section-title">Образование</h2>
+      </div>
+      <div class="card" role="region" aria-label="Образование">
+        <table>
+          <tr>
+            <th>Учебное заведение</th>
+            <td>МГТУ "СТАНКИН"</td>
+          </tr>
+          <tr>
+            <th>Специальность</th>
+            <td>Автоматизация технологических процессов и производств</td>
+          </tr>
+          <tr>
+            <th>Курс/Группа</th>
+            <td>3 курс • АДБ-23-07</td>
+          </tr>
+          <tr>
+            <th>Год начала/окончания</th>
+            <td>2023 — наст. время</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- Раздел: Раскрывающиеся списки (сертификаты/проекты) -->
+    <section class="section" id="certs-projects">
+      <div class="section-head">
+        <h2 class="section-title">Сертификаты</h2>
+      </div>
+      <details>
+        <summary>Сертификат: Основы промышленной автоматизации</summary>
+        <div style="padding:8px 10px;">
+          <p>Выдан: Онлайн-курсы</p>
+          <p>Комментарий: базовые принципы автоматизации, безопасности и управления производством.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Проект: Анализ эффективности участков</summary>
+        <div style="padding:8px 10px;">
+          <p>Описание: сбор данных, визуализация и предложение по оптимизации пропускной способности.</p>
+        </div>
+      </details>
+    </section>
+
+    <!-- Раздел: Связаться -->
+    <section class="section" id="contact">
+      <div class="section-head">
+        <h2 class="section-title">Связаться</h2>
+      </div>
+      <div class="card" style="display:flex; gap:16px; flex-wrap:wrap;">
+        <button class="secondary" id="openContactForm" aria-label="Открыть форму обратной связи">Открыть форму</button>
+        <a href="#" class="secondary" id="emailLink">Почта: example@example.com</a>
+      </div>
+
+      <form id="feedbackForm" class="card" style="display:none; margin-top:12px;" novalidate>
+        <div class="row">
+          <div class="field">
+            <label for="name">Имя</label>
+            <input type="text" id="name" name="name" required placeholder="Ваше имя">
+            <span class="error" id="errName"></span>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="email@example.com">
+            <span class="error" id="errEmail"></span>
+          </div>
+        </div>
+        <div class="field" style="margin-top:8px;">
+          <label for="message">Сообщение</label>
+          <textarea id="message" name="message" required placeholder="Ваше сообщение..."></textarea>
+          <span class="error" id="errMessage"></span>
+        </div>
+        <div class="btns" style="justify-content:flex-end;">
+          <button type="reset" class="secondary" aria-label="Очистить форму">Очистить</button>
+          <button type="submit" class="primary" aria-label="Отправить форму">Отправить</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © 2026 Данила Кокорев. Все права защищены.
+  </footer>
+
+  <script>
+    // Адаптивная навигация и анимации появления
+    const sections = document.querySelectorAll('.section');
+    const appear = () => {
+      const t = window.scrollY;
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          sec.classList.add('visible');
+        }
+      });
+    };
+    document.addEventListener('scroll', appear, { passive: true });
+    window.addEventListener('load', appear);
+
+    // Счётчик просмотров (локально примитивный)
+    const countEl = document.getElementById('viewCount');
+    try {
+      let count = localStorage.getItem('rv_count_danila') || 0;
+      count = parseInt(count) + 1;
+      localStorage.setItem('rv_count_danila', count);
+      countEl.textContent = new Intl.NumberFormat().format(count) + ' просмотр' + (count === 1 ? '' : 'ов');
+    } catch (e) {
+      // ignore
+    }
+
+    // Тёмная тема
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    const applyTheme = (t) => {
+      root.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+    };
+    applyTheme(savedTheme);
+    const toggleBtn = document.getElementById('themeToggle');
+    toggleBtn.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      applyTheme(current);
+      localStorage.setItem('theme', current);
+      toggleBtn.textContent = current === 'light' ? '☀️' : '🌙';
+    });
+    // инициализируем иконку
+    toggleBtn.textContent = (savedTheme === 'light') ? '☀️' : '🌙';
+
+    // Раскрывающиеся списки: анимации изменения высоты
+    document.querySelectorAll('details').forEach(d => {
+      d.addEventListener('toggle', () => {
+        const diff = d.querySelector('div');
+        if (d.open) {
+          diff.style.height = 'auto';
+        } else {
+          diff.style.height = '0';
+        }
+      });
+    });
+
+    // Форма контакта
+    const form = document.getElementById('feedbackForm');
+    const openFormBtn = document.getElementById('openContactForm');
+    openFormBtn.addEventListener('click', () => {
+      form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+      if (form.style.display === 'block') {
+        form.querySelector('#name').focus();
+      }
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // простая валидация
+      let ok = true;
+      const name = form.querySelector('#name');
+      const email = form.querySelector('#email');
+      const message = form.querySelector('#message');
+      const errName = document.getElementById('errName');
+      const errEmail = document.getElementById('errEmail');
+      const errMessage = document.getElementById('errMessage');
+      errName.textContent = '';
+      errEmail.textContent = '';
+      errMessage.textContent = '';
+
+      if (!name.value.trim()) {
+        errName.textContent = 'Пожалуйста, введите имя';
+        ok = false;
+      }
+      if (!email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        errEmail.textContent = 'Введите корректный email';
+        ok = false;
+      }
+      if (message.value.trim().length < 5) {
+        errMessage.textContent = 'Сообщение должно содержать не менее 5 символов';
+        ok = false;
+      }
+
+      if (ok) {
+        // Заглушка отправки
+        alert('Сообщение отправлено. Спасибо!');
+        form.reset();
+        form.style.display = 'none';
+      }
+    });
+
+    // Имитируем плавную прокрутку к секциям по клику меню (если потребуется)
+    // Т.к. меню в шапке без ссылок, этот блок оставлен как заготовка.
+
+  </script>
+</body>
+</html>
